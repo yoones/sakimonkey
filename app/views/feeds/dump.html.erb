@@ -1,0 +1,11 @@
+<h3>Avec catégories</h3>
+<% @feeds.each do |feed| %>
+<%= "#{feed.category.name unless feed.category.nil?};#{feed.feed_url}" %><br />
+<% end %>
+
+<hr />
+
+<h3>Sans catégories</h3>
+<% @feeds.each do |feed| %>
+<%= feed.feed_url %><br />
+<% end %>

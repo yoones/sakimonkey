@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<center><h2><%= link_to @feed.title, @feed.url %></h2></center>
+<center>
+<div>
+<hr />
+  <p>
+    <b>Cached entries:</b>
+    <%= @feed.entries.count.to_s %>
+  </p>
+
+  <fieldset>
+    <div class="input-append">
+      <input class="input-xxlarge" type="text">
+      <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+  </fieldset>
+  <%= paginate @entries %>
+<hr />
+</div>
+</center>
+<% @entries.each do |e| %>
+<div>
+  <h4><%= link_to e.title, e.url %></h4>
+  <p class="muted">Published: <%= e.published.strftime("%d/%m/%Y") %></p>
+  <p><%=raw e.summary %></p>
+</div>
+<hr />
+<% end %>
+
+<center>
+<%= paginate @entries %>
+</center>

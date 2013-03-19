@@ -1,0 +1,10 @@
+<h1>Add a new feed</h1>
+
+<% unless notice.nil? %>
+<div class="alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Warning!</strong> <%= notice %>
+</div>
+<% end %>
+
+<%= render 'form' %>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SakiMonkey</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="<%= root_path %>">SakiMonkey</a>
+      <ul class="nav">
+	<li class="divider-vertical"></li>
+	<li><%= link_to "Manage Feeds", feeds_path %></li>
+	<li class="divider-vertical"></li>
+	<li><%= link_to "Update Feeds", update_feeds_path %></li>
+	<li class="divider-vertical"></li>
+	<li><%= link_to "Feeds.csv", dump_feeds_path %></li>
+	<li class="divider-vertical"></li>
+	<li><%= link_to "Manage Categories", categories_path %></li>
+	<li class="divider-vertical"></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3 well" style="border: 1px dashed #000; padding: 8px 0;">
+	<!--Sidebar content-->
+	<ul class="nav nav-list" style="font-family: courier: font-size: 12px">
+	  <% @_categories.each do |c| %>
+	  <li class="nav-header"><%= c.name %></li>
+	  <% c.feeds.each do |f| %>
+	  <li><%= link_to f.title, f %></li>
+	  <% end %>
+	  <% end %>
+	  <li class="nav-header"><i>(Non classés)</i></li>
+	  <% @_feeds.each do |f| %>
+	  <% if f.category_id.nil? %>
+	  <li><%= link_to f.title, f %></li>
+	  <% end %>
+	  <% end %>
+	</ul>
+
+      </div>
+      <div class="span9">
+	<%= yield %>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
