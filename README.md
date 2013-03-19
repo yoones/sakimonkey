@@ -18,7 +18,7 @@ Information
 
 **Description:**
 
-RSS reader. You can manage your feeds, gather them in categories, search, etc. Feeds' entries caching is currently manual (you have to click the "Feeds update" button), but is to be replaced by a crontab-based solution.
+RSS reader. You can manage your feeds, gather them in categories, search, etc. Feeds' entries caching is done either manually (by clicking the "Feeds update" button), or using whenever (a crontab-based gem).
 
 Installation
 ------------
@@ -32,6 +32,12 @@ $> rake db:migrate
 That's all. If you want some default feeds to try the app, do:
 
 $> rake db:seed
+
+If you want to setup a daemon that updates your feeds, first configure 'config/schedule.rb' (by default updates the feeds every 2 minutes on development stage). Then, update your crontab using:
+
+$> whenever --update-crontab
+
+This action requires that you are at the root of your rails application (it tries to access ./config/schedule.rb and expects to find it).
 
 Issues
 ------

@@ -3,7 +3,7 @@ class Feed < ActiveRecord::Base
 
   belongs_to :category
   has_many :entries, dependent: :delete_all
-  validates_uniqueness_of :url
+  validates_uniqueness_of :feed_url
 
   def get_entries
     feed = Feedzirra::Feed.fetch_and_parse(self.feed_url)
