@@ -1,0 +1,24 @@
+<ul class="nav nav-list" style="font-family: courier: font-size: 12px">
+  <% @_categories.each do |c| %>
+  <li class="nav-header"><%= c.name %></li>
+  <% c.feeds.each do |f| %>
+  <li>
+    <span>
+      <%= link_to f.title, f %>
+      <% if f.entries.count > 0 %>
+      &nbsp;
+      <div class="pull-right">
+	<span class="label"><%= f.entries.count.to_s %></span>
+      </div>
+      <% end %>
+    </span>
+  </li>
+  <% end %>
+  <% end %>
+  <li class="nav-header"><i>(Non classés)</i></li>
+  <% @_feeds.each do |f| %>
+  <% if f.category_id.nil? %>
+  <li><%= link_to f.title, f %><span class="badge"><%= f.entries.count.to_s %></span></li>
+  <% end %>
+  <% end %>
+</ul>
