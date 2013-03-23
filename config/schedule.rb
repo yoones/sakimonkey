@@ -21,6 +21,6 @@
 
 set :output, "/tmp/rails_whenever_cron.log"
 
-every 2.minutes do
+every 5.minutes do
   runner "Daemon::update_all_feeds", environment: :development
 end
