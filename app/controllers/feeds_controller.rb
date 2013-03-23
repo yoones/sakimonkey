@@ -16,14 +16,9 @@ class FeedsController < ApplicationController
   # GET /feeds/1
   # GET /feeds/1.json
   def show
-    # @feed = Feed.find(params[:id])
-    # @feed.update_entries
-    # @entries = @feed.entries.order("published DESC").page params[:page]
-
     @feed = Feed.find(params[:id])
     @search = @feed.entries.search(params[:q])
     @entries = @search.result.order("published DESC").page params[:page]
-    # @entries = @feed.entries.search(params[:q]).order("published DESC").page params[:page]
 
     respond_to do |format|
       format.html # show.html.erb

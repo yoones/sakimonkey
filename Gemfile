@@ -37,12 +37,15 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
 gem "feedzirra"
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
-gem "better_errors"
-gem "binding_of_caller"
 gem "kaminari"
 gem "whenever", require: false
 gem "ransack"
