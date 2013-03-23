@@ -10,10 +10,12 @@
   </p>
 
   <fieldset>
+    <%= search_form_for @search do |f| %>
     <div class="input-append">
-      <input class="input-xxlarge" type="text">
-      <button type="submit" class="btn btn-primary">Search</button>
-  </div>
+      <%= f.text_field :content_cont, class: "input-xxlarge", placeholder: "search this feed's entries" %>
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    </div>
+    <% end %>
   </fieldset>
   <%= paginate @entries %>
 <hr />

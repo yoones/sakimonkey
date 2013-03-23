@@ -1,10 +1,12 @@
 SakiMonkey::Application.routes.draw do
-  resources :categories
+  get "entries/show"
 
+  resources :categories
 
   match "feeds/dump" => "feeds#dump", as: "dump_feeds"
   match "feeds/update_all" => "feeds#update_all", as: "update_feeds"
   resources :feeds #, only: [:index, :show, :new, :create, :destroy]
+  match "feeds/:id" => "feeds#show", as: "entries"
   root to: "feeds#index"
 
   # The priority is based upon order of creation:
