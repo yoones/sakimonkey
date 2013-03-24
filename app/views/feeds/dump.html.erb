@@ -1,11 +1,17 @@
-<h3>Avec catégories</h3>
-<% @feeds.each do |feed| %>
-<%= "#{feed.category.name unless feed.category.nil?};#{feed.feed_url}" %><br />
-<% end %>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#without-categories" data-toggle="tab">Juste the feeds</a></li>
+  <li><a href="#with-categories" data-toggle="tab">Feeds with categories (.csv)</a></li>
+</ul>
 
-<hr />
-
-<h3>Sans catégories</h3>
-<% @feeds.each do |feed| %>
-<%= feed.feed_url %><br />
-<% end %>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade in active" id="without-categories">
+    <% @feeds.each do |feed| %>
+    <%= feed.feed_url %><br />
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="with-categories">
+    <% @feeds.each do |feed| %>
+    <%= "#{feed.category.name unless feed.category.nil?};#{feed.feed_url}" %><br />
+    <% end %>
+  </div>
+</div>
