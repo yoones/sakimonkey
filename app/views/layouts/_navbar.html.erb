@@ -7,7 +7,7 @@
       <li class="divider-vertical"></li>
       <li><%= link_to "Edit Feeds", feeds_path %></li>
       <li class="divider-vertical"></li>
-      <li><%= link_to "Update Feeds", update_feeds_path %></li>
+      <li><%= link_to "Update cache", update_feeds_path %></li>
       <li class="divider-vertical"></li>
       <li><%= link_to "Dump Feeds", dump_feeds_path %></li>
       <li class="divider-vertical"></li>
@@ -21,7 +21,7 @@
           <li><a href="#">Cached entries : <%= @stats[:nbr_entries] %></a></li>
           <li><a href="#">Last update: <%= @stats[:last_update] %></a></li>
           <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
+          <li class="disabled"><a href="#">Thanks for using SakiMonkey :)</a></li>
         </ul>
       </li>
       <li class="divider-vertical"></li>

@@ -12,7 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Category" %><br />
     <%= f.collection_select :category_id, @categories, :id, :name, :prompt => "Choose a category" %>
   </div>
   <div class="actions">

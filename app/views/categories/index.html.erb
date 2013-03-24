@@ -1,21 +1,23 @@
-<h1>Listing categories</h1>
-
-<table class="table table-bordered table-condensed">
+<table class="table table-condensed table-hover">
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
+    <th>Feeds</th>
     <th></th>
   </tr>
 
-<% @categories.each do |category| %>
+  <% @categories.each do |category| %>
   <tr>
     <td><%= category.name %></td>
-    <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= category.feeds.count.to_s %></td>
+    <td style="text-align: right">
+      <div class="btn-group">
+	<%= link_to 'Show', category, class: "btn btn-mini" %>
+	<%= link_to 'Edit', edit_category_path(category), class: "btn btn-mini" %>
+	<%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-mini" %>
+      </div>
+    </td>
   </tr>
-<% end %>
+  <% end %>
 </table>
 
 <hr />

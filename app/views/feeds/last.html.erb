@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<center><h2><%= "Last #{@entries.count.to_s} entries" %></h2></center>
+<hr />
+
 <% @entries.each do |e| %>
 <div style="margin: 0px; background-color: #eee; border-top: 1px solid #ddd; padding: 2px; padding-left: 4px; padding-right: 4px; border-radius: 3px; font-family: courier">
   <span><b>Source:</b> <%= link_to e.feed.title[0..17] + "...", e.feed.feed_url %></span> | 
@@ -11,4 +14,5 @@
   <h4><%= link_to e.title, e.url, html: { target: "_blank" } %></h4>
   <p><%=raw e.summary %></p>
 </div>
+<hr />
 <% end %>

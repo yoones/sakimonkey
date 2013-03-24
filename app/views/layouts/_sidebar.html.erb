@@ -1,7 +1,7 @@
 <h2>Feeds</h2>
 <ul class="nav nav-list" style="font-family: courier: font-size: 12px">
   <% @_categories.each do |c| %>
-  <li class="nav-header"><%= link_to c.name, c %></li>
+  <li class="nav-header"><a href="<%= category_path(c) %>"><i class="icon-share-alt"></i> <%= c.name %></a></li>
   <% c.feeds.each do |f| %>
   <li>
     <span>
