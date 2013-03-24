@@ -1,10 +1,13 @@
+<h2>Feeds</h2>
 <ul class="nav nav-list" style="font-family: courier: font-size: 12px">
   <% @_categories.each do |c| %>
   <li class="nav-header"><%= c.name %></li>
   <% c.feeds.each do |f| %>
   <li>
     <span>
-      <%= link_to f.title, f %>
+      <% title = f.title[0..30] %>
+      <% title += "..." if f.title.size > 30 %>
+      <%= link_to title, f %>
       <% if f.entries.count > 0 %>
       &nbsp;
       <div class="pull-right">
@@ -18,7 +21,12 @@
   <li class="nav-header"><i>(Non classés)</i></li>
   <% @_feeds.each do |f| %>
   <% if f.category_id.nil? %>
-  <li><%= link_to f.title, f %><span class="badge"><%= f.entries.count.to_s %></span></li>
+  <li>
+    <% title = f.title[0..20] %>
+    <% title += "..." if f.title.size > 20 %>
+    <%= link_to title, f %>
+    <span class="badge"><%= f.entries.count.to_s %></span>
+  </li>
   <% end %>
   <% end %>
 </ul>

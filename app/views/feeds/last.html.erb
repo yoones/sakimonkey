@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<% @entries.each do |e| %>
+<div style="margin: 0px; background-color: #eee; border-top: 1px solid #ddd; padding: 2px; padding-left: 4px; padding-right: 4px; border-radius: 3px; font-family: courier">
+  <span><b>Source:</b> <%= link_to e.feed.title[0..17] + "...", e.feed.feed_url %></span> | 
+  <% unless e.author.nil? %><span><b>Author:</b> <%= e.author %></span> | <% end %>
+  <span><b>Published:</b> <%= e.published.strftime("%d/%m/%Y") %></span>
+  <span class="pull-right"></span>
+</div>
+<div>
+  <h4><%= link_to e.title, e.url, html: { target: "_blank" } %></h4>
+  <p><%=raw e.summary %></p>
+</div>
+<% end %>

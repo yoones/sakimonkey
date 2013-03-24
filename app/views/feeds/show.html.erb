@@ -9,27 +9,36 @@
     <%= @feed.entries.count.to_s %>
   </p>
 
-  <fieldset>
     <%= search_form_for @search do |f| %>
     <div class="input-append">
       <%= f.text_field :content_cont, class: "input-xxlarge", placeholder: "search this feed's entries" %>
       <%= f.submit "Search", class: "btn btn-primary" %>
     </div>
     <% end %>
-  </fieldset>
-  <%= paginate @entries %>
+    <%= paginate @entries %>
 <hr />
 </div>
 </center>
 <% @entries.each do |e| %>
+<div style="margin: 0px; background-color: #eee; border-top: 1px solid #ddd; padding: 2px; padding-left: 4px; padding-right: 4px; border-radius: 3px; font-family: courier">
+  <% unless e.author.nil? %><span><b>Author:</b> <%= e.author %></span> | <% end %>
+  <span><b>Published:</b> <%= e.published.strftime("%d/%m/%Y") %></span>
+  <span class="pull-right"></span>
+</div>
 <div>
   <h4><%= link_to e.title, e.url %></h4>
-  <p class="muted">Published: <%= e.published.strftime("%d/%m/%Y") %></p>
-  <p><%=raw e.summary %></p>
+  <p>
+    <% if e.summary.nil? == false %>
+    <%=raw e.summary %>
+    <% else %>
+    <%=raw e.content[0..500] %>
+    <%= " [...]" if e.content.size > 500 %>
+    <% end %>
+  </p>
 </div>
 <hr />
 <% end %>
 
 <center>
-<%= paginate @entries %>
+  <%= paginate @entries %>
 </center>

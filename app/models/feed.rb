@@ -27,7 +27,7 @@ class Feed < ActiveRecord::Base
       get_entries
     else
       feed = Feedzirra::Feed.fetch_and_parse(self.feed_url)
-      if feed.last_modified != self.last_modified
+      if feed != 0 and feed.last_modified != self.last_modified
         feed.entries.each do |e|
           if e.published > lastentry.published
             entry = Entry.new

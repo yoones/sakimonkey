@@ -13,6 +13,10 @@ class FeedsController < ApplicationController
     end
   end
 
+  def last
+    @entries = Entry.last(30)
+  end
+
   # GET /feeds/1
   # GET /feeds/1.json
   def show
