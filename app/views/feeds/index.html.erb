@@ -1,6 +1,6 @@
 <table class="table table-hover table-condensed">
-  <!-- classified entries -->
-  <% @_categories.each do |c| %>
+  <!-- classified feeds -->
+  <% @sidebar_categories.each do |c| %>
   <% if c.feeds.count > 0 %>
   <thead>
     <tr>
@@ -36,10 +36,10 @@
   </tbody>
   <% end %>
   <% end %>
-  <!-- unclassified entries -->
+  <!-- unclassified feeds -->
   <thead>
     <tr>
-      <td colspan="6"><i><h4>(Unclassified entries)</h4></i></td>
+      <td colspan="6"><i><h4>(Unclassified feeds)</h4></i></td>
     </tr>
     <tr>
       <th>Title</th>
@@ -51,7 +51,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @_feeds.each do |feed| %>
+    <% @sidebar_feeds.each do |feed| %>
     <% if feed.category_id.nil? %>
     <tr>
       <td><%= link_to feed.title, feed %></td>
