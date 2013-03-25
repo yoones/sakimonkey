@@ -19,25 +19,28 @@
 <hr />
 </div>
 </center>
+
+<% if @feed.unread > 0 %>
+<p style="text-align: right">
+  <%= link_to "Mark all as read", mark_read_feed_path(@feed.id), :remote => true, class: "btn btn-small btn-primary" %>
+</p>
+<% end %>
+<% flag = true %>
 <% @entries.each do |e| %>
 <div style="margin: 0px; background-color: #eee; border-top: 1px solid #ddd; padding: 2px; padding-left: 4px; padding-right: 4px; border-radius: 3px; font-family: courier">
   <% unless e.author.nil? %><span><b>Author:</b> <%= e.author %></span> | <% end %>
   <span><b>Published:</b> <%= e.published.strftime("%d/%m/%Y") %></span>
   <span class="pull-right">
     <% if e.unread == true %>
-    <%= link_to "Mark as read", mark_read_entry_path(e.id), :remote => true %>
+    <%= link_to "Mark as read", mark_read_entry_path(e.id), :remote => true, "data-dismiss" => "alert" %>
     <% end %>
   </span>
 </div>
-<div>
+<div style="<%= "background-color: #ddd" if flag == false %>">
+<% flag = !flag %>
   <h4><%= link_to e.title, e.url %></h4>
   <p>
-    <% if e.summary.nil? == false %>
-    <%=raw e.summary %>
-    <% else %>
-    <%=raw e.content[0..500] %>
-    <%= " [...]" if e.content.size > 500 %>
-    <% end %>
+    <%=raw e.content %>
   </p>
 </div>
 <hr />

@@ -3,7 +3,8 @@ SakiMonkey::Application.routes.draw do
 
   resources :categories
 
-  match "entries/:id/mark/read" => "feeds#mark_read_entry", as: "mark_read_entry"
+  match "entries/:id/mark_read" => "feeds#mark_read_entry", as: "mark_read_entry"
+  match "feeds/:id/mark_read" => "feeds#mark_read_feed", as: "mark_read_feed"
   # match "entries/:id/mark/unread" => "feeds#mark_unread_entry", as: "mark_unread_entry"
 
   match "feeds/dump" => "feeds#dump", as: "dump_feeds"

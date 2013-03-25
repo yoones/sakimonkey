@@ -134,6 +134,16 @@ class FeedsController < ApplicationController
     render nothing: true
   end
 
+  def mark_read_feed
+    @feed = Feed.find_by_id(params[:id])
+    unless @feed.nil?
+      @feed.entries.update_all(unread: false)
+      @feed.unread = 0
+      @feed.save
+    end
+    render nothing: true
+  end
+
   # def mark_unread_entry
   #   entry = Entry.find_by_id(params[:id])
   #   unless entry.nil?
