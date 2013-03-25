@@ -56,6 +56,7 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     @feed = Feed.new
+    @feed.category_id = params[:feed][:category_id]
     @feed.feed_url = params[:feed][:feed_url].strip
     feed = Feedzirra::Feed.fetch_and_parse(@feed.feed_url)
 
@@ -120,4 +121,28 @@ class FeedsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def mark_read_entry
+    entry = Entry.find_by_id(params[:id])
+    unless entry.nil?
+      entry.unread = false
+      entry.save
+      f = entry.feed
+      f.unread -= 1
+      f.save
+    end
+    render nothing: true
+  end
+
+  # def mark_unread_entry
+  #   entry = Entry.find_by_id(params[:id])
+  #   unless entry.nil?
+  #     entry.unread = true
+  #     entry.save
+  #     f = entry.feed
+  #     f.unread += 1
+  #     f.save
+  #   end
+  #   render nothing: true
+  # end
 end

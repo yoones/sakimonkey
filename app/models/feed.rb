@@ -19,6 +19,8 @@ class Feed < ActiveRecord::Base
       entry.categories = e.categories
       entry.save
     end
+    self.unread = feed.entries.count
+    self.save
   end
 
   def update_entries
@@ -39,10 +41,13 @@ class Feed < ActiveRecord::Base
             entry.content = e.content
             entry.published = e.published
             entry.categories = e.categories
-            entry.save
+            if entry.save
+              self.unread += 1
+            end
           end
         end
       end
+      self.save
     end
   end
 end

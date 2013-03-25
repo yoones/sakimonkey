@@ -23,7 +23,11 @@
 <div style="margin: 0px; background-color: #eee; border-top: 1px solid #ddd; padding: 2px; padding-left: 4px; padding-right: 4px; border-radius: 3px; font-family: courier">
   <% unless e.author.nil? %><span><b>Author:</b> <%= e.author %></span> | <% end %>
   <span><b>Published:</b> <%= e.published.strftime("%d/%m/%Y") %></span>
-  <span class="pull-right"></span>
+  <span class="pull-right">
+    <% if e.unread == true %>
+    <%= link_to "Mark as read", mark_read_entry_path(e.id), :remote => true %>
+    <% end %>
+  </span>
 </div>
 <div>
   <h4><%= link_to e.title, e.url %></h4>

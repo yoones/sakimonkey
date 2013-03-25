@@ -9,6 +9,11 @@
       <% title += "..." if f.title.size > 30 %>
       <%= link_to title, f %>
     </span>
+    <% if f.unread > 0 %>
+    <div class="pull-right">
+      <span class="label label-info"><%= f.unread.to_s %></span>
+    </div>
+    <% end %>
   </li>
   <% end %>
   <% end %>
@@ -19,6 +24,11 @@
     <% title = f.title[0..20] %>
     <% title += "..." if f.title.size > 20 %>
     <%= link_to title, f %>
+    <% if f.unread > 0 %>
+    <div class="pull-right">
+      <span class="label label-info"><%= f.unread.to_s %></span>
+    </div>
+    <% end %>
   </li>
   <% end %>
   <% end %>
