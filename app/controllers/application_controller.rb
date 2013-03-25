@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   before_filter :load_globals
 
   def load_globals
-    @_feeds = Feed.all
-    @_categories = Category.all
+    @sidebar_categories = Category.find(:all, include: :feeds)
+    @sidebar_feeds = Feed.where(category_id: nil)
     @stats = {
       nbr_feeds: Feed.count,
       nbr_entries: Entry.count,
