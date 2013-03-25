@@ -4,27 +4,29 @@
   <li class="nav-header"><a href="<%= category_path(c) %>"><i class="icon-share-alt"></i> <%= c.name %></a></li>
   <% c.feeds.each do |f| %>
   <li>
-    <span>
-      <% title = f.title[0..30] %>
-      <% title += "..." if f.title.size > 30 %>
-      <% url = f.url or f.feed_url %>
-      <% url = f.feed_url if url.nil? %>
-      <% if url.nil? == false and url.size > 10 %>
-      <% favicon = "" %>
-      <% parts = url.split("/") %>
-      <% favicon += parts[0] + "//" %>
-      <% favicon += parts[2].split(".")[-2..-1].join(".") + "/favicon.ico" %>
-      <img src="<%= favicon %>" height="16" width="16" />
-      <% else %>
-      <i class="icon-minus"></i>
+    <a href="<%= feed_path(f) %>">
+      <span>
+	<% title = f.title[0..30] %>
+	<% title += "..." if f.title.size > 30 %>
+	<% url = f.url or f.feed_url %>
+	<% url = f.feed_url if url.nil? %>
+	<% if url.nil? == false and url.size > 10 %>
+	<% favicon = "" %>
+	<% parts = url.split("/") %>
+	<% favicon += parts[0] + "//" %>
+	<% favicon += parts[2].split(".")[-2..-1].join(".") + "/favicon.ico" %>
+	<img src="<%= favicon %>" height="16" width="16" />
+	<% else %>
+	<i class="icon-minus"></i>
+	<% end %>
+	<%= title %>
+      </span>
+      <% if f.unread > 0 %>
+      <div class="pull-right">
+	<span class="label label-info"><%= f.unread.to_s %></span>
+      </div>
       <% end %>
-      <%= link_to title, f %>
-    </span>
-    <% if f.unread > 0 %>
-    <div class="pull-right">
-      <span class="label label-info"><%= f.unread.to_s %></span>
-    </div>
-    <% end %>
+    </a>
   </li>
   <% end %>
   <% end %>
