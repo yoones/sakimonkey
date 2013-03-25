@@ -11,3 +11,21 @@
  *= require_self
  *= require_tree .
  */
+
+div.entry {
+    border: 1px solid #ddd;
+}
+
+div.entry_header {
+    margin: 0px;
+    background-color: #eee;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 3px;
+    font-family: courier;
+}
+
+div.entry_body {
+    margin: 15px;
+}
