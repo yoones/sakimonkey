@@ -14,3 +14,21 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+function mark_read(entry_id, feed_id)
+{
+    // ajax
+    tocall = "/entries/" + entry_id + "/mark_read";
+    $.ajax({
+	url: tocall,
+	success: function(nb){
+	    // update unread entries
+	    feed = $('#sidebar_' + feed_id + '_unread')
+	    entry_link = $('#entry_' + entry_id + '_mark_read')
+	    feed.text(nb);
+	    // hide link code
+	    entry_link.fadeOut();
+	}
+    });
+    return false;
+}

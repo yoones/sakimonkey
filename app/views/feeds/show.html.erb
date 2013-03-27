@@ -23,7 +23,7 @@
 
 <% if @feed.unread > 0 %>
 <p style="text-align: right">
-  <%= link_to "Mark all as read", mark_read_feed_path(@feed.id), :remote => true, class: "btn btn-small btn-primary" %>
+  <%= link_to "Mark all as read", mark_read_feed_path(@feed.id), class: "btn btn-link" %>
 </p>
 <% end %>
 
@@ -35,7 +35,7 @@
     <span><b>Published:</b> <%= e.published.strftime("%d/%m/%Y") %></span>
     <span class="pull-right">
       <% if e.unread == true %>
-      <%= link_to "Mark as read", mark_read_entry_path(e.id), :remote => true, "data-dismiss" => "alert" %>
+      <button id="<%= "entry_#{e.id.to_s}_mark_read" %>" onclick="mark_read(<%= e.id.to_s %>, <%= e.feed.id.to_s %>);" class="btn btn-link btn-small" style="padding: 0px">Mark as read</button>
       <% end %>
     </span>
   </div>

@@ -127,11 +127,10 @@ class FeedsController < ApplicationController
     unless entry.nil?
       entry.unread = false
       entry.save
-      f = entry.feed
-      f.unread -= 1
-      f.save
+      entry.feed.unread -= 1
+      entry.feed.save
     end
-    render nothing: true
+    render inline: entry.feed.unread.to_s
   end
 
   def mark_read_feed
@@ -141,18 +140,6 @@ class FeedsController < ApplicationController
       @feed.unread = 0
       @feed.save
     end
-    render nothing: true
+    redirect_to @feed
   end
-
-  # def mark_unread_entry
-  #   entry = Entry.find_by_id(params[:id])
-  #   unless entry.nil?
-  #     entry.unread = true
-  #     entry.save
-  #     f = entry.feed
-  #     f.unread += 1
-  #     f.save
-  #   end
-  #   render nothing: true
-  # end
 end
