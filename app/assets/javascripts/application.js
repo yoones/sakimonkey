@@ -32,3 +32,9 @@ function mark_read(entry_id, feed_id)
     });
     return false;
 }
+
+$(document).ready(function() {
+    $('img.favicon').error(function() {
+        this.src = '/default-favicon.png';
+    });
+});
