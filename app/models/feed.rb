@@ -28,8 +28,8 @@ class Feed < ActiveRecord::Base
     if lastentry.nil?
       get_entries
     else
-      feed = Feedzirra::Feed.fetch_and_parse(self.feed_url)
-      if feed != 0 and feed.last_modified != self.last_modified
+      feed = Feedzirra::Feed.fetch_and_parse(self.feed_url, { if_modified_since: self.last_modified })
+      if feed.is_a?(Integer) == false and feed.last_modified != self.last_modified
         feed.entries.each do |e|
           if e.published > lastentry.published
             entry = Entry.new
