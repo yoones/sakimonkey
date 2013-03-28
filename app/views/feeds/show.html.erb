@@ -27,15 +27,25 @@
 </p>
 <% end %>
 
+<% anchor_id = 0 %>
 <!-- Entries display -->
 <% @entries.each do |e| %>
-<div class="entry">
-  <div class="entry_header">
+<% anchor_id += 1 %>
+<div id="anchor_<%= anchor_id.to_s %>" class="entry">
+  <div class="entry_header" onclick="goto_anchor(<% anchor_id %>)">
     <% unless e.author.nil? %><span><b>Author:</b> <%= e.author %></span> | <% end %>
     <span><b>Published:</b> <%= e.published.strftime("%d/%m/%Y") %></span>
     <span class="pull-right">
+      <% if anchor_id < @entries.count %>
+      <a href="#anchor_<%= (anchor_id + 1).to_s %>">Next</a>
+      <% end %>
       <% if e.unread == true %>
-      <button id="<%= "entry_#{e.id.to_s}_mark_read" %>" onclick="mark_read(<%= e.id.to_s %>, <%= e.feed.id.to_s %>);" class="btn btn-link btn-small" style="padding: 0px">Mark as read</button>
+      <button id="<%= "entry_#{e.id.to_s}_mark_read" %>"
+	      onclick="mark_read(<%= e.id.to_s %>, <%= e.feed.id.to_s %>);"
+	      class="btn btn-link btn-small"
+	      style="padding: 0px">
+	Mark as read
+      </button>
       <% end %>
     </span>
   </div>
