@@ -27,13 +27,19 @@ function mark_read(entry_id, feed_id)
 	    entry_link = $('#entry_' + entry_id + '_mark_read')
 	    navbar_unread = $('#navbar_unread')
 	    navbar_unread_content = $('#navbar_unread_content')
+	    page_title = $('title')
 	    feed.text(nb);
 	    if (feed.text() == "0")
 		feed.fadeOut();
 	    entry_link.fadeOut();
 	    navbar_unread_content.text(navbar_unread_content.text() - 1);
 	    if (navbar_unread_content.text() == "0")
+	    {
 		navbar_unread.fadeOut();
+		page_title.text("SakiMonkey");
+	    }
+	    else
+		page_title.text("SakiMonkey (" + navbar_unread_content.text() + ")");
 	}
     });
     return false;
