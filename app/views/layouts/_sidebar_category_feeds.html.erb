@@ -2,8 +2,9 @@
 <li>
   <a href="<%= feed_path(f) %>">
     <span>
-      <% title = f.title[0..30] %>
-      <% title += "..." if f.title.size > 30 %>
+      <% title_maxsize = 30 %>
+      <% title = f.title[0..title_maxsize] %>
+      <% title += "..." if f.title.size > title_maxsize %>
       <% url = f.url or f.feed_url %>
       <% url = f.feed_url if url.nil? %>
 
