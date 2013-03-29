@@ -59,6 +59,12 @@
 <hr />
 <% end %>
 
+<% if @feed.unread > 0 %>
+<p style="text-align: right">
+  <%= link_to "Mark all as read", mark_read_feed_path(@feed.id), class: "btn" %>
+</p>
+<% end %>
+
 <center>
   <%= paginate @entries %>
 </center>
