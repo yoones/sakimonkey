@@ -12,7 +12,7 @@ rm -rf public/system
 
 if [ "$rails_env" = "development" ]
 then
-    rm db/development.sqlite3
+    rm -f db/development.sqlite3
     rake db:migrate $env VERSION=0 --trace && rake db:migrate $env --trace && rake db:seed $env --trace
 fi
 
