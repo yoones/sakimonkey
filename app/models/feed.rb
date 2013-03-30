@@ -17,6 +17,7 @@ class Feed < ActiveRecord::Base
       entry.content = e.content
       entry.published = e.published
       entry.categories = e.categories
+      entry.unread = true
       entry.save
     end
     self.unread = feed.entries.count
@@ -36,6 +37,7 @@ class Feed < ActiveRecord::Base
         entry.content = e.content
         entry.published = e.published
         entry.categories = e.categories
+        entry.unread = true
         if entry.save
           self.unread += 1
         end
