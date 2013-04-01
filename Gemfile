@@ -52,4 +52,5 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "kaminari"
 gem "whenever", require: false
-gem "ransack"
+gem "ransack", git: "https://github.com/ernie/ransack.git"
+
