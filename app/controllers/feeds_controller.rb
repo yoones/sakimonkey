@@ -142,4 +142,10 @@ class FeedsController < ApplicationController
     end
     redirect_to @feed
   end
+
+  def mark_read_all_feeds
+    Feed.update_all(unread: 0)
+    Entry.update_all(unread: false)
+    redirect_to root_path
+  end
 end

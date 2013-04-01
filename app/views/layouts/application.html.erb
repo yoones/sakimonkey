@@ -10,10 +10,10 @@
   <%= render partial: "layouts/navbar" %>
   <div class="container-fluid">
     <div class="row-fluid">
-      <div class="span3" style="border-right: 1px dashed #aaa">
+      <div class="span3 sidebar_container">
 	<%= render partial: "layouts/sidebar" %>
       </div>
-      <div class="span9" style="padding: 3px;">
+      <div class="span9" class="entries_container">
 	<%= yield %>
       </div>
     </div>

@@ -9,6 +9,7 @@ SakiMonkey::Application.routes.draw do
 
   match "feeds/dump" => "feeds#dump", as: "dump_feeds"
   match "feeds/update_all" => "feeds#update_all", as: "update_feeds"
+  match "feeds/mark_read" => "feeds#mark_read_all_feeds", as: "mark_read_all_feeds"
   resources :feeds #, only: [:index, :show, :new, :create, :destroy]
   match "feeds/:id" => "feeds#show", as: "entries"
 

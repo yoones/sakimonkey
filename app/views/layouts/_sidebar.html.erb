@@ -1,5 +1,5 @@
 <h2>Feeds</h2>
-<ul class="nav nav-list" style="font-family: courier: font-size: 12px">
+<ul class="nav nav-list">
   <% @sidebar_categories.each do |c| %>
   <% if c.feeds.count > 0 %>
   <li class="nav-header"><a href="<%= category_path(c) %>"><i class="icon-share-alt"></i> <%= c.name %></a></li>

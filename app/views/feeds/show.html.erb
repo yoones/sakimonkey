@@ -32,21 +32,23 @@
 <% @entries.each do |e| %>
 <% anchor_id += 1 %>
 <div id="anchor_<%= anchor_id.to_s %>" class="entry">
-  <div class="entry_header">
+  <div class="entry_header container-fluid">
     <% unless e.author.nil? %><span><b>Author:</b> <%= e.author %></span> | <% end %>
     <span><b>Published:</b> <%= e.published.strftime("%d/%m/%Y") %></span>
     <span class="pull-right">
-      <% if anchor_id < @entries.count %>
-	 <a href="#anchor_<%= (anchor_id + 1).to_s %>">Next entry</a>
-	 <% end %>
-	 <% if e.unread == true %>
-	 <button id="<%= "entry_#{e.id.to_s}_mark_read" %>"
-		 onclick="mark_read(<%= e.id.to_s %>, <%= e.feed.id.to_s %>);"
-		 class="btn btn-link btn-small"
-		 style="padding: 0px">
-	   Mark as read
-	 </button>
-	 <% end %>
+      <div class="btn-group">
+	<% if anchor_id < @entries.count %>
+	   <button onclick="self.location.href='#anchor_<%= (anchor_id + 1).to_s %>'" class="btn btn-mini">Next entry</button>
+	   <% end %>
+	   <% if e.unread == true %>
+	   <button id="<%= "entry_#{e.id.to_s}_mark_read" %>"
+		   onclick="mark_read(<%= e.id.to_s %>, <%= e.feed.id.to_s %>);"
+		   class="btn btn-mini"
+		 style="">
+	     Mark as read
+	   </button>
+	   <% end %>
+      </div>
     </span>
   </div>
   <div class="entry_body container-fluid">
