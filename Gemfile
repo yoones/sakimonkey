@@ -46,7 +46,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem "feedzirra"
+gem "feedzirra", git: "https://github.com/pauldix/feedzirra.git"
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
