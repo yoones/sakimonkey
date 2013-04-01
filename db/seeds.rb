@@ -40,8 +40,12 @@ end
     feed.last_modified = fz.last_modified
     if feed.save!
       puts "added!"
+      
     else
       puts "failed (record)"
     end
+  end
+  Feed.all.each do |f|
+    f.get_entries
   end
 end
